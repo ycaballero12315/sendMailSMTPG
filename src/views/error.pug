@@ -1,0 +1,28 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    // Bootstrap styles
+    link(rel="stylesheet", href="/css/bootstrap.min.css")
+
+  body
+    .container.bg-light.py-3
+      .row.justify-content-center
+        .col-md-6
+          .card.border-danger.shadow-lg
+            .card-body.text-center.py-5
+              h1.text-danger Error #{error.status}
+              p.text-dark #{message}
+              if error.status === 404
+                p.text-dark The requested page could not be found.
+              else if error.status === 500
+                p.text-dark An internal server error has occurred.
+              else if error.status === 403
+                p.text-dark Access to this resource is forbidden.
+              else if error.status === 401
+                p.text-dark You are not authorized to access this page.
+              else
+                p.text-dark An error has occurred.
+              button.btn.btn-danger(type="button" onclick="location.href='/'") Back to Home

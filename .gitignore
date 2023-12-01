@@ -1,0 +1,14 @@
+
+.DS_STORE
+.idea/
+modules/.settings
+modules/.vscode
+src/private
+#.env
+# Ignore .history for the xyz.local-history VSCode extension
+.history
+.babelrc
+dist
+node_modules
+private
+.vscode

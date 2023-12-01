@@ -1,0 +1,18 @@
+form(action="/enviado", method="post")
+    input(type="hidden", name="returnUrl", value="returnUrl")  
+    h1(class="text-center") Formulario de envío de correo #{trabajador}
+    h4(class="text-center.text-danger")  #{h4}
+    .input-group.mb-3   
+        span.input-group-text *
+        input(type="text", name="name" class="form-control" placeholder="Nombre")
+    .input-group.mb-3   
+        span.input-group-text @
+        input(type="text", name="email" class="form-control" placeholder="Correo")
+    .input-group.mb-3   
+        span.input-group-text ✍
+        input(type="text", name="asunto" class="form-control" placeholder="Asunto")
+    .input-group.mb-3   
+        span.input-group-text text 
+        input(type="text", name="text" class="form-control" placeholder="comentarios...")
+    .row.justify-content-center 
+        button(type="submit" class="btn btn-success") ENVIAR DATOS

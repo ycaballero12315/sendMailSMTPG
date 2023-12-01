@@ -1,0 +1,22 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    // Bootstrap styles
+    link(rel="stylesheet", href="/css/bootstrap.min.css")
+    title=title
+  body
+    // Header
+    include nav.pug 
+
+    // Main content
+    main.container.mt-5.py-5
+      .row.justify-content-center.align-items-center.text-center
+        .col-md-6.col-sm-12
+          h1 Bienvenido(a) a nuestro sitio web
+          p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam convallis, mi at laoreet gravida, ligula justo ultricies nunc, id vestibulum felis quam eget ex. Suspendisse potenti. Sed sed massa et neque elementum ullamcorper. Sed tristique semper ipsum, et feugiat nulla interdum eu. Mauris nec semper risus. Donec vel ultrices elit. Sed euismod aliquam mi, vel tristique nulla tincidunt ut. Fusce at ante sed felis consectetur malesuada. Integer lobortis, odio vel bibendum tristique, purus augue tincidunt odio, id bibendum velit nulla non mauris. Nam euismod, ipsum et pharetra dignissim, magna nibh pretium metus, sit amet mattis diam est vel enim. Sed euismod ipsum quis leo malesuada luctus.
+
+    // Footer
+    include footer.pug 
