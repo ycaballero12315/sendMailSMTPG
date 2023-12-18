@@ -18,11 +18,11 @@ const emailSchema = new mongoose.Schema({
         }
     },
     asunto:{
-        type: String,
-        required: true
+        type: String
     },
     text:{
         type:String,
+        required: true
     },
     enviado: {type: Boolean, default: false},
     identificador:{

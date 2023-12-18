@@ -1,11 +1,13 @@
 //controllers
-const indexCtrl = {};
+const indexCtrl = {
+  trabajador : '',
+};
 const express = require('express')
 const dbEmail = require('../model/dbEmail');
 const { render } = require('pug');
+const dbUtils = require('../Utils/dbUtils')
 const app = express();
 app.use(express.json());
-indexCtrl.trabajador = '';
 //Aquí se colocan las funciones que realizan en cada peticion
 indexCtrl.renderIndex = (req, res) => {
   res.render("index", {
@@ -25,9 +27,9 @@ indexCtrl.renderForm = (req, res) => {
 };
 
 indexCtrl.renderGuardado = async (req, res) => {
-  const { name, email, asunto, text, returnUrl } = req.body;
+  const { name, email, asunto, text } = req.body;
   let guardado = false;
-  if (!name || !email || !asunto || ! text) {
+  if (!name || !email || ! text) {
     const returnUrl = req.path.toLowerCase();
     return res.render('sendEmail',{
       title: 'Enviar correo',
@@ -38,50 +40,10 @@ indexCtrl.renderGuardado = async (req, res) => {
       email,
       asunto,
       text,
-      returnUrl,
+      // returnUrl,
     });
-    // return res.status(400).json({message: 'Lo siento faltan campos obligatorios! '});
   }
-  console.log('Datos recibidos:', req.body)
-  try {
-    const emailNameInclude = await dbEmail.findOne({$or:[{email},{name}]});
-
-    if (emailNameInclude) {
-      const datosDuplicados = new dbEmail({
-        name: name,
-        email: email,
-        asunto: asunto,
-        text: text
-      });
-      await datosDuplicados.save().catch((err)=>{
-        console.log('Datos no se guardaron: ',err);
-        return res.status(500).json({message: 'Lo sentimos mucho su documento no se guardó! '})
-      });
-    } else {
-      const datosNuevos = new dbEmail({
-        name: name,
-        email: email,
-        asunto: asunto,
-        text: text
-      })
-      await datosNuevos.save().catch(err=>{
-        console.error('Error al guardar el documento', err);
-        return res.status(500).json({message: 'Lo sentimos mucho su documento no se guardó! '});
-      });
-      guardado = true;
-  }
-  } catch (error) {
-    console.error(`Error al guardar los datos ${email}`, error);
-    res.status(500).json({message:'Error al guardar los datos.'});
-  }
-  if(guardado){
-    res.render('enviado', {
-      title: "Correo guardado",
-      titulo: "Gracias por usar nuestro servicio!",
-      guardado: guardado
-    });
-    return;
-  }
+  dbUtils.saveToDB(req.body,res,indexCtrl.trabajador);
 };
 //Exportar
 module.exports = indexCtrl;

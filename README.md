@@ -1,0 +1,2 @@
+El proyecto guarda las notificaciones a los cientes en una base de datos, cada dos horas se sincroniza
+y envia correos a gmail por cada documento guardado, se comprueba su estado; si no se envio se intenta nuevamente.
